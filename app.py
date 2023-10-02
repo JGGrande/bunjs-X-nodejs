@@ -13,9 +13,13 @@ def make_request():
 
     def request_thread():
         nonlocal requests_made
-        while time.time() - start_time < 60 and requests_made < MAX_REQUESTS:
+        while time.time() - start_time < 10 :
             try:
-                response = requests.post("http://localhost:3000/")
+                data = {
+                    "name": "Alice",
+                    "cargo": "Desenvolvedor"
+                }
+                response = requests.post("http://localhost:3000/", json=data)
                 # Obtenha o corpo da resposta
                 body = response.text
             except Exception as e:
